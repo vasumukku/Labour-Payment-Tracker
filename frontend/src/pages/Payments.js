@@ -156,7 +156,7 @@ const Payments = () => {
               const tb = TIME_BADGES[p.timeOfDay];
               const displayName = getDisplayName(p.leaderName, '', language);
               return (
-                <div key={p._id} className="flex items-center gap-3 p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group">
+                <div key={p._id} className="flex items-center gap-3 p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                   <div className="w-11 h-11 bg-orange-50 dark:bg-orange-900/20 rounded-xl flex items-center justify-center text-xl flex-shrink-0">
                     {PAYMENT_ICONS[p.paymentMethod]}
                   </div>
@@ -179,7 +179,7 @@ const Payments = () => {
                           ₹{p.amount.toLocaleString('en-IN')}
                         </p>
                         {isSuperAdmin && (
-                          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <div className="flex gap-1">
                             <Link to={`/edit/${p._id}`} className="p-1.5 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg"><MdEdit className="text-lg" /></Link>
                             <button onClick={() => setDeleteId(p._id)} className="p-1.5 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20 rounded-lg"><MdDelete className="text-lg" /></button>
                           </div>
