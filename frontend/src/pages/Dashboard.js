@@ -24,7 +24,8 @@ const AVATAR_COLORS = [
 ];
 
 const Dashboard = () => {
-  const { isAdmin, theme, language } = useApp();
+  const { canViewAll, isSuperAdmin, theme, language } = useApp();
+  const isAdmin = canViewAll;
   const t = useT();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -168,7 +169,7 @@ const Dashboard = () => {
           <div className="p-8 text-center">
             <MdConstruction className="text-gray-400 text-4xl mx-auto mb-3" />
             <p className="text-gray-500 font-medium">{t.noPayments}</p>
-            {isAdmin && (
+            {isSuperAdmin && (
               <Link to="/add" className="mt-3 inline-flex items-center gap-1.5 text-sm text-orange-600 font-semibold hover:underline">
                 <MdAdd /> {t.addFirst}
               </Link>
@@ -207,7 +208,7 @@ const Dashboard = () => {
       </div>
 
       {/* FAB for desktop admin */}
-      {isAdmin && (
+      {isSuperAdmin && (
         <Link to="/add" className="hidden lg:flex fixed bottom-8 right-8 w-14 h-14 bg-orange-500 hover:bg-orange-600 text-white rounded-2xl items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 active:scale-95">
           <MdAdd className="text-2xl" />
         </Link>
