@@ -15,7 +15,8 @@ const TIME_BADGES = {
 };
 
 const Payments = () => {
-  const { isAdmin, language } = useApp();
+  const { isSuperAdmin, canViewAll, language } = useApp();
+  const isAdmin = canViewAll;
   const t = useT();
   const [payments, setPayments] = useState([]);
   const [leaders, setLeaders] = useState([]);
@@ -177,7 +178,7 @@ const Payments = () => {
                         <p className="font-black text-base text-orange-600 dark:text-orange-400">
                           ₹{p.amount.toLocaleString('en-IN')}
                         </p>
-                        {isAdmin && (
+                        {isSuperAdmin && (
                           <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                             <Link to={`/edit/${p._id}`} className="p-1.5 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg"><MdEdit className="text-lg" /></Link>
                             <button onClick={() => setDeleteId(p._id)} className="p-1.5 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20 rounded-lg"><MdDelete className="text-lg" /></button>
@@ -200,7 +201,7 @@ const Payments = () => {
         )}
       </div>
 
-      {deleteId && isAdmin && (
+      {deleteId && isSuperAdmin && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="card p-6 w-full max-w-sm shadow-2xl">
             <div className="w-14 h-14 bg-rose-100 dark:bg-rose-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4">
